@@ -20,7 +20,7 @@ def visualize_snapshot_cell(data_list, idx, name):
         plt.savefig(f'training_results_batch3_[norm]/{name}_ssCell_idx{i}.png', dpi=200)
         plt.close()
 
-def visualize_snapshot_nucleus(data_list, idxz, name):
+def visualize_snapshot_nucleus(data_list, idx, name):
     """
     data_list: list of input data that is of shape (snapshot, [Torch data object])
     idx: list of indices within data_list that you want to visualize
