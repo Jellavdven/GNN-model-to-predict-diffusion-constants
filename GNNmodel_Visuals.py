@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import networkx as nx
 
-def visualize_snapshot_cell(data_list, idx, name):
+def visualize_snapshot_cell(data_list, idx, folder, name):
     """
     data_list: list of input data that is of shape (snapshot, [Torch data object])
     idx: list of indices within data_list that you want to visualize
@@ -17,10 +17,10 @@ def visualize_snapshot_cell(data_list, idx, name):
 
         plt.figure()
         plt.imshow(cell_ids)
-        plt.savefig(f'training_results_batch3_[norm]/{name}_ssCell_idx{i}.png', dpi=200)
+        plt.savefig(f'{folder}/{name}_ssCell_idx{i}.png', dpi=200)
         plt.close()
 
-def visualize_snapshot_nucleus(data_list, idx, name):
+def visualize_snapshot_nucleus(data_list, idx, folder, name):
     """
     data_list: list of input data that is of shape (snapshot, [Torch data object])
     idx: list of indices within data_list that you want to visualize
@@ -30,10 +30,10 @@ def visualize_snapshot_nucleus(data_list, idx, name):
 
         plt.figure()
         plt.imshow(cell_ids % 2)
-        plt.savefig(f'training_results_batch3_[norm]/{name}_ssNucleus_idx{i}.png', dpi=200)
+        plt.savefig(f'{folder}/{name}_ssNucleus_idx{i}.png', dpi=200)
         plt.close()
 
-def visualize_snapshot_graph(data_list, idx, name):
+def visualize_snapshot_graph(data_list, idx, folder, name):
     """
     data_list: list of Torch Geometric data objects
     idx: indices to visualize
@@ -52,9 +52,17 @@ def visualize_snapshot_graph(data_list, idx, name):
         pos = dict(enumerate(nodes_rot))
         
         plt.figure()
-        nx.draw(G, pos, with_labels=True)
+        nx.draw(
+                G,
+                pos,
+                with_labels=True,
+                node_color="steelblue",
+                font_color="white",
+                node_size=350,
+                font_size=10
+            )
 
-        plt.savefig(f'training_results_batch3_[norm]/{name}_graph_idx{i}.png', dpi=200)
+        plt.savefig(f'{folder}/{name}_graph_idx{i}.png', dpi=200)
         plt.close()
 
 # see what linear regression on the nucleus area fraction can do
